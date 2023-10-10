@@ -1,7 +1,7 @@
 import java.util.*;
-public class Bank {
+public class ATM_Interface { 
     public static void main(String[] args) {
-     BankAccount b=new BankAccount("Alfa","Honoured_1");
+     BankAccount b=new BankAccount("Your_Name","Honoured_1");
      b.showMenu();
     }
 }
@@ -13,13 +13,14 @@ class BankAccount{
         this.CustomerID=Cid;
     }
     void deposit(int amount){
-        if(amount>0) {
+        if(amount>0) {// Amount cannot be Invalid
+            balance -= amount;
             balance += amount;
             previousTransaction = amount;
         }
     }
     void withdraw(int amount){
-        if(amount>0) {
+        if(amount>0) { // Amount cannot be Negative
             balance -= amount;
             previousTransaction = -amount;
         }
@@ -36,19 +37,21 @@ class BankAccount{
 
     void showMenu(){
         Scanner sc = new Scanner(System.in);
-        char ch; // default value
+        char ch; // default value 
         System.out.println();
         System.out.println("Welcome "+CustomerName);
         System.out.println("Your ID is :"+CustomerID);
         System.out.println("\n");
 
+        //Menu Options as follows
+        
         System.out.println("A. Check Balance");
         System.out.println("B. Deposit");
         System.out.println("C. Withdraw");
         System.out.println("D. Previous Transaction");
         System.out.println("E. Exit");
 
-        do {
+        do { // do while loop because this needs to run Once for Every Scenario
             System.out.println("-------------------------------------------------------------------------");
             System.out.println("Enter your choice");
             System.out.println("-------------------------------------------------------------------------");
@@ -93,5 +96,5 @@ class BankAccount{
 
         }while(ch!='E');
 
-    }
-}
+    }// closes showMenu()
+}// closes BankAccount class
